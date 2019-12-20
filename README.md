@@ -22,6 +22,23 @@ What's New In Python 3.x - Python3.x新特性
 
 - print语句变为print()函数 ([PEP 3105](https://www.python.org/dev/peps/pep-3105))
 
+    ```python
+        Old: print "The answer is", 2*2
+        New: print("The answer is", 2*2)
+        
+        Old: print x,           # Trailing comma suppresses newline
+        New: print(x, end=" ")  # Appends a space instead of a newline
+        
+        Old: print              # Prints a newline
+        New: print()            # You must call the function!
+        
+        Old: print >>sys.stderr, "fatal error"
+        New: print("fatal error", file=sys.stderr)
+        
+        Old: print (x, y)       # prints repr((x, y))
+        New: print((x, y))      # Not the same as print(x, y)!
+    ```
+
 - 返回视图和迭代而不是列表 (Views And Iterators Instead Of Lists)
     - dict的keys(), values(), items()返回视图
     - dict的iterkeys(), itervalues(), iteritems()被移除
