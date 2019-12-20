@@ -7,13 +7,28 @@ What's New In Python 3.x - Python3.x新特性
 链接: https://docs.python.org/3/whatsnew/index.html
 
 # 3.8
+链接: https://docs.python.org/3/whatsnew/3.8.html
+
 # 3.7
+链接: https://docs.python.org/3/whatsnew/3.7.html
+
 # 3.6
+链接: https://docs.python.org/3/whatsnew/3.6.html
+
 # 3.5
+链接: https://docs.python.org/3/whatsnew/3.5.html
+
 # 3.4
+链接: https://docs.python.org/3/whatsnew/3.4.html
+
 # 3.3
+链接: https://docs.python.org/3/whatsnew/3.3.html
+
 # 3.2
+链接: https://docs.python.org/3/whatsnew/3.2.html
+
 # 3.1
+链接: https://docs.python.org/3/whatsnew/3.1.html
 
 # 3.0
 链接: https://docs.python.org/3/whatsnew/3.0.html
@@ -175,7 +190,7 @@ What's New In Python 3.x - Python3.x新特性
     - 移除reload(), 应使用imp.reload()
     - 移除dict.has_key(), 应使用in
  
- # 移植到3.0
+ ## 移植到3.0
  
  - 测试代码覆盖率要足够高
  
