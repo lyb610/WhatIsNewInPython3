@@ -102,7 +102,15 @@ What's New In Python 3.x - Python3.x新特性
 - 移除语法
     - [PEP 3113](https://www.python.org/dev/peps/pep-3113): 移除元组(tuple)参数拆解
         
-        def foo(a, (b, c)):... 不再支持, 应该改为: def foo(a, b_c): b, c = b_c
+        ```python
+          def foo(a, (b, c)):
+              # ...
+       
+          # 不再支持, 应该改为: 
+      
+          def foo(a, b_c): 
+              b, c = b_c
+        ```
         
     - 移除反引号 `, 应该使用repr()
     - 移除<>, 应该使用!=
