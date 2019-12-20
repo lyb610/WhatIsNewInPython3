@@ -50,10 +50,47 @@ What's New In Python 3.x - Python3.x新特性
 - 新语法
     - [PEP 3107](https://www.python.org/dev/peps/pep-3107): 函数参数和返回值的注解
     - [PEP 3102](https://www.python.org/dev/peps/pep-3102): 必须指定关键字的参数(Keyword-only arguments)
-    - [PEP 3104](https://www.python.org/dev/peps/pep-3104): nolocal
+    
+        星号可以以一个参数的形式出现在函数声明中的参数列表中，但星号之后的所有参数都必须有关键字（keyword），这样在函数调用时，星号*之后的所有参数都必须以keyword=value的形式调用，而不能以位置顺序调用。
+        
+        ```python
+          def compare1(a, b, *, c):
+              pass
+          
+          compare1(1, 2, 3)           # 报错
+          compare1(1, 2, c=3)         # 正确
+      
+          def compare2(*, a, b, c):
+              pass
+      
+          compare2(1, 2, c=3)         # 报错
+          compare2(a=1, b=2, c=3)     # 正确
+        ``` 
+  
+    - [PEP 3104](https://www.python.org/dev/peps/pep-3104): nonlocal
+        - nonlocal关键字用来在内层函数或其他作用域中使用外层(非全局)变量
+        - 如果在内层函数中只是仅仅读外部变量，可以不在此变量前加nonlocal
+        - 如果在内层函数中进行修改外部变量，且外部变量为不可变类型，则需要在变量前加nonlocal
+        
     - [PEP 3132](https://www.python.org/dev/peps/pep-3132): 更牛逼的变量拆解(Extended Iterable Unpacking)
+        
+        ```python
+          a, *rest, b = range(5)      # a = 0, rest = [1,2,3], b = 4
+          *rest, b = range(5)         # rest = [0, 1, 2, 3], b = 4
+          a, b, *rest = range(5)      # a = 0, b = 1, rest=[2, 3, 4]
+          *a, b, *rest = range(5)     # 报错: *不能使用两次以上
+          
+          # 右边不够用也行
+          a, b, *c = 1, 2             # a = 1, b = 2, c = []
+          a, *b, c = 1, 2             # a = 1, b = [], c = 2
+          *a, b, c = 1, 2             # a = [], b = 1, c = 2
+        ```
+        
     - 字典推导: {k: v for k, v in stuff} 和 dict(stuff) 一样, 但更灵活
-    - 集合写法(Set literals), 与字典同样使用{}. 例如: {1, 2}代表集合. 但是{}是空字典, set()才是空集合, {x for x in stuff}和set(stuff)一样, 但更灵活
+    - 集合写法(Set literals), 与字典同样使用{}. 
+        
+        例如: {1, 2}代表集合. 但是{}是空字典, set()才是空集合, {x for x in stuff}和set(stuff)一样, 但更灵活
+    
     - 新的八进制写法, 例如: 0o720(从2.6开始)，之前的0720会报错
     - 新的二进制写法, 例如: 0b1010(从2.6开始), 并有一个对应的内置函数, bin()
     - Bytes写法必须用b或者B指定, 并有一个内置函数, bytes()
@@ -61,7 +98,10 @@ What's New In Python 3.x - Python3.x新特性
     - as, with, True, False, None现在是保留字(从2.6开始)
     - 列表推导: [i for i in 1,2,3]不再支持, 应该使用[i for i in (1,2,3)]
 - 移除语法
-    - [PEP 3113](https://www.python.org/dev/peps/pep-3113): 移除元组(tuple)参数拆解. def foo(a, (b, c)):... 不再支持, 应该改为: def foo(a, b_c): b, c = b_c
+    - [PEP 3113](https://www.python.org/dev/peps/pep-3113): 移除元组(tuple)参数拆解
+        
+        def foo(a, (b, c)):... 不再支持, 应该改为: def foo(a, b_c): b, c = b_c
+        
     - 移除反引号 `, 应该使用repr()
     - 移除<>, 应该使用!=
     - exec()不再是关键字, 而是函数
@@ -84,8 +124,8 @@ What's New In Python 3.x - Python3.x新特性
 - [PEP 3109](https://www.python.org/dev/peps/pep-3109): raise Exception(args) 替代 raise Exception, args
 - [PEP 3109](https://www.python.org/dev/peps/pep-3109)和[PEP 3134](https://www.python.org/dev/peps/pep-3134): 新的链式raise语法: raise [expr [from expr]]
     - 表明两个异常相关有连续性, 例如:         
-    ```
-        raise SecondaryException("oops!") from primary_exception_var
+    ```python
+      raise SecondaryException("oops!") from primary_exception_var
     ``` 
 ## 其他变化
 - 内置函数
