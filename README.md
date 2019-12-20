@@ -94,9 +94,11 @@ What's New In Python 3.x - Python3.x新特性
     - 新的八进制写法, 例如: 0o720(从2.6开始)，之前的0720会报错
     - 新的二进制写法, 例如: 0b1010(从2.6开始), 并有一个对应的内置函数, bin()
     - Bytes写法必须用b或者B指定, 并有一个内置函数, bytes()
+    
 - 改变语法
     - as, with, True, False, None现在是保留字(从2.6开始)
     - 列表推导: [i for i in 1,2,3]不再支持, 应该使用[i for i in (1,2,3)]
+    
 - 移除语法
     - [PEP 3113](https://www.python.org/dev/peps/pep-3113): 移除元组(tuple)参数拆解
         
@@ -110,24 +112,32 @@ What's New In Python 3.x - Python3.x新特性
     - 相对路径import: from .[module] import name, 不使用.的都属于绝对路径import
 
 ## 库变化
+
 - md5用hashlib替代
+
 - 自动使用纯python版本和C加速版本
     - 2.x有些库有纯python版本和C加速版本, 例如pickle和cPickle. 3.0开始, 加速版本属于纯python的实现细节, 应该直接使用标准版本，内部实现根据情况纯python版本或者C加速版本
+
 - 相关的模块被分组合到包里, 例如:
     - dbm (anydbm, dbhash, dbm, gdbm, ...)
     - http (httplib, BaseHTTPServer, ...)
     - urllib (urllib, urllib2, urlparse, ...)
+
 ## [PEP 3101](https://www.python.org/dev/peps/pep-3101): 字符串格式化新方法, %字符串格式化操作符将被替代掉.
 
 ## 异常变化
+
 - [PEP 3110](https://www.python.org/dev/peps/pep-3110): except Exception, var 改为 except Exception as var
+
 - [PEP 3109](https://www.python.org/dev/peps/pep-3109): raise Exception(args) 替代 raise Exception, args
+
 - [PEP 3109](https://www.python.org/dev/peps/pep-3109)和[PEP 3134](https://www.python.org/dev/peps/pep-3134): 新的链式raise语法: raise [expr [from expr]]
     - 表明两个异常相关有连续性, 例如:         
     ```python
       raise SecondaryException("oops!") from primary_exception_var
     ``` 
 ## 其他变化
+
 - 内置函数
     - [PEP 3135](https://www.python.org/dev/peps/pep-3135): 新的super(), 不带参数时自动选择正确的类和实例, 带参数时保持和之前不变.
     - [PEP 3111](https://www.python.org/dev/peps/pep-3111): raw_input()改名为input()
@@ -141,7 +151,11 @@ What's New In Python 3.x - Python3.x新特性
     - 移除dict.has_key(), 应使用in
  
  # 移植到3.0
+ 
  - 测试代码覆盖率要足够高
+ 
  - (如果连2.6都没有) 先移植到2.6上
+ 
  - (如果还在2.6上) 使用-3开关, 进行测试, 解决所有的警告⚠️ 测试都通过
+ 
  - (如果已经在2.7上) 执行2to3进行代码转换, 在3.0下运行代码并解决剩下问题，最后保证测试全部通过
