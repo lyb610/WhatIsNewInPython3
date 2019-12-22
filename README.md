@@ -52,7 +52,7 @@ What's New In Python 3.x - Python3.x新特性
 
 ## 其他变化
 
-- 包含__main__.py的目录或者zip文件, __main__.py会被解释器直接运行
+- 包含\_\_main__.py的目录或者zip文件, \_\_main__.py会被解释器直接运行
 - format()的字符串里的字段{}可以自动计算
     ```python
     >>> 'Sir {} of {}'.format('Gallahad', 'Camelot')
