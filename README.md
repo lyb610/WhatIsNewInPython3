@@ -30,6 +30,57 @@ What's New In Python 3.x - Python3.x新特性
 # 3.1
 链接: https://docs.python.org/3/whatsnew/3.1.html
 
+## [PEP 372](https://www.python.org/dev/peps/pep-0372): 有序字典
+
+- collections.OrderedDict
+- 按照插入顺序排序
+
+## [PEP 378](https://www.python.org/dev/peps/pep-0378): 千分位格式符 逗号(,)
+
+- 例如:
+    ```python
+    >>> format(1234567, ',d')
+    '1,234,567'
+    >>> format(1234567.89, ',.2f')
+    '1,234,567.89'
+    >>> format(12345.6 + 8901234.12j, ',f')
+    '12,345.600000+8,901,234.120000j'
+    >>> format(Decimal('1234567.89'), ',f')
+    '1,234,567.89'
+    ```
+- 支持类型: int, float, complex, decimal.Decimal
+
+## 其他变化
+
+- 包含__main__.py的目录或者zip文件, __main__.py会被解释器直接运行
+- format()的字符串里的字段{}可以自动计算
+    ```python
+    >>> 'Sir {} of {}'.format('Gallahad', 'Camelot')
+    'Sir Gallahad of Camelot'
+    '1,234,567.89'
+    # 以前必须指定索引: 'Sir {0} of {1}'
+    ```
+- with支持多个上下文管理(context managers)
+    ```python
+    >>> with open('mylog.txt') as infile, open('a.out', 'w') as outfile:
+    ...     for line in infile:
+    ...         if '<critical>' in line:
+    ...             outfile.write(line)
+    ```
+
+## 新的/改进的/废弃的模块
+
+- collections.Counter返回一个序列(sequence)或者迭代的唯一元素的计数
+    ```python
+    >>> Counter(['red', 'blue', 'red', 'green', 'blue', 'blue'])
+    Counter({'blue': 3, 'red': 2, 'green': 1})
+    ```
+- sys.version_info现在是命名元组(named tuple)
+    ```python
+    >>> sys.version_info
+    sys.version_info(major=3, minor=1, micro=0, releaselevel='alpha', serial=2)
+    ```
+
 # 3.0
 链接: https://docs.python.org/3/whatsnew/3.0.html
 
@@ -182,8 +233,9 @@ What's New In Python 3.x - Python3.x新特性
     - [PEP 3135](https://www.python.org/dev/peps/pep-3135): 新的super(), 不带参数时自动选择正确的类和实例, 带参数时保持和之前不变.
     - [PEP 3111](https://www.python.org/dev/peps/pep-3111): raw_input()改名为input()
     - 新的next()调用对象的\_\_next__()方法
-    - round()默认不再4舍5入, 必须大于0.5才入, 不再返回浮点数.
+    - round()行为变化: 当尾数是0.5时返回最接近的偶数结果, 而且不再返回浮点数.
         - 例如: round(2.5)返回2, 而不是3.0, 但是round(2.500001)返回3
+        - 例如: round(3.5)返回4
     - 移除apply()
     - 移除execfile()
     - 移除reduce(), 应使用functools.reduce()
