@@ -89,20 +89,20 @@ What's New In Python 3.x - Python3.x新特性
 - print语句变为print()函数 ([PEP 3105](https://www.python.org/dev/peps/pep-3105))
 
     ```python
-        Old: print "The answer is", 2*2
-        New: print("The answer is", 2*2)
-        
-        Old: print x,           # Trailing comma suppresses newline
-        New: print(x, end=" ")  # Appends a space instead of a newline
-        
-        Old: print              # Prints a newline
-        New: print()            # You must call the function!
-        
-        Old: print >>sys.stderr, "fatal error"
-        New: print("fatal error", file=sys.stderr)
-        
-        Old: print (x, y)       # prints repr((x, y))
-        New: print((x, y))      # Not the same as print(x, y)!
+    Old: print "The answer is", 2*2
+    New: print("The answer is", 2*2)
+    
+    Old: print x,           # Trailing comma suppresses newline
+    New: print(x, end=" ")  # Appends a space instead of a newline
+    
+    Old: print              # Prints a newline
+    New: print()            # You must call the function!
+    
+    Old: print >>sys.stderr, "fatal error"
+    New: print("fatal error", file=sys.stderr)
+    
+    Old: print (x, y)       # prints repr((x, y))
+    New: print((x, y))      # Not the same as print(x, y)!
     ```
 
 - 返回视图和迭代而不是列表 (Views And Iterators Instead Of Lists)
@@ -137,17 +137,17 @@ What's New In Python 3.x - Python3.x新特性
         星号可以以一个参数的形式出现在函数声明中的参数列表中，但星号之后的所有参数都必须有关键字（keyword），这样在函数调用时，星号*之后的所有参数都必须以keyword=value的形式调用，而不能以位置顺序调用。
         
         ```python
-          def compare1(a, b, *, c):
-              pass
-          
-          compare1(1, 2, 3)           # 报错
-          compare1(1, 2, c=3)         # 正确
-      
-          def compare2(*, a, b, c):
-              pass
-      
-          compare2(1, 2, c=3)         # 报错
-          compare2(a=1, b=2, c=3)     # 正确
+        def compare1(a, b, *, c):
+          pass
+        
+        compare1(1, 2, 3)           # 报错
+        compare1(1, 2, c=3)         # 正确
+        
+        def compare2(*, a, b, c):
+          pass
+        
+        compare2(1, 2, c=3)         # 报错
+        compare2(a=1, b=2, c=3)     # 正确
         ``` 
   
     - [PEP 3104](https://www.python.org/dev/peps/pep-3104): nonlocal
@@ -158,15 +158,15 @@ What's New In Python 3.x - Python3.x新特性
     - [PEP 3132](https://www.python.org/dev/peps/pep-3132): 更牛逼的变量拆解(Extended Iterable Unpacking)
         
         ```python
-          a, *rest, b = range(5)      # a = 0, rest = [1,2,3], b = 4
-          *rest, b = range(5)         # rest = [0, 1, 2, 3], b = 4
-          a, b, *rest = range(5)      # a = 0, b = 1, rest=[2, 3, 4]
-          *a, b, *rest = range(5)     # 报错: *不能使用两次以上
-          
-          # 右边不够用也行
-          a, b, *c = 1, 2             # a = 1, b = 2, c = []
-          a, *b, c = 1, 2             # a = 1, b = [], c = 2
-          *a, b, c = 1, 2             # a = [], b = 1, c = 2
+        a, *rest, b = range(5)      # a = 0, rest = [1,2,3], b = 4
+        *rest, b = range(5)         # rest = [0, 1, 2, 3], b = 4
+        a, b, *rest = range(5)      # a = 0, b = 1, rest=[2, 3, 4]
+        *a, b, *rest = range(5)     # 报错: *不能使用两次以上
+        
+        # 右边不够用也行
+        a, b, *c = 1, 2             # a = 1, b = 2, c = []
+        a, *b, c = 1, 2             # a = 1, b = [], c = 2
+        *a, b, c = 1, 2             # a = [], b = 1, c = 2
         ```
         
     - 字典推导: {k: v for k, v in stuff} 和 dict(stuff) 一样, 但更灵活
@@ -186,13 +186,13 @@ What's New In Python 3.x - Python3.x新特性
     - [PEP 3113](https://www.python.org/dev/peps/pep-3113): 移除元组(tuple)参数拆解
         
         ```python
-          def foo(a, (b, c)):
-              # ...
-       
-          # 不再支持, 应该改为: 
-      
-          def foo(a, b_c): 
-              b, c = b_c
+        def foo(a, (b, c)):
+          # ...
+        
+        # 不再支持, 应该改为: 
+        
+        def foo(a, b_c): 
+          b, c = b_c
         ```
         
     - 移除反引号 `, 应该使用repr()
@@ -225,7 +225,7 @@ What's New In Python 3.x - Python3.x新特性
 - [PEP 3109](https://www.python.org/dev/peps/pep-3109)和[PEP 3134](https://www.python.org/dev/peps/pep-3134): 新的链式raise语法: raise [expr [from expr]]
     - 表明两个异常相关有连续性, 例如:         
     ```python
-      raise SecondaryException("oops!") from primary_exception_var
+    raise SecondaryException("oops!") from primary_exception_var
     ``` 
 ## 其他变化
 
