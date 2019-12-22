@@ -2,8 +2,7 @@
 
 ![GitHub](https://img.shields.io/github/license/lyb610/WhatIsNewInPython3)
 
-What's New In Python 3.x - Python3.x新特性
-
+# 2.0 - 3.x
 链接: https://docs.python.org/3/whatsnew/index.html
 
 # 3.8
